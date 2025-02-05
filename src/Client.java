@@ -1,6 +1,8 @@
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Client {
     public static void main(String[] args) {
@@ -15,7 +17,7 @@ public class Client {
             InetAddress serverInetAddress = InetAddress.getByName(serverAddress);
             DatagramPacket request = new DatagramPacket(requestData, requestData.length, serverInetAddress, serverPort);
             socket.send(request);
-            System.out.println("Requête envoyée au serveur avec T₁ = " + T1);
+            System.out.println("Requête envoyée au serveur avec T1 = " + T1);
 
             // Réception de la réponse du serveur
             byte[] buffer = new byte[1024];
@@ -38,13 +40,13 @@ public class Client {
             // Calcul du décalage des horloges θ
             long theta = ((T1Prime + T2Prime) / 2) - ((T1 + T2) / 2);
 
-            System.out.println("Réponse reçue : T₁ = " + T1Received + ", T'₁ = " + T1Prime + ", T'₂ = " + T2Prime);
-            System.out.println("T₂ = " + T2);
-            System.out.println("Délai de transmission δ = " + delta + " ms");
-            System.out.println("Décalage des horloges θ = " + theta + " ms");
+            System.out.println("Réponse reçue : T1 = " + new SimpleDateFormat("HH:mm:ss:SSS").format(new Date(T1Received)) + ", T'1 = " + new SimpleDateFormat("HH:mm:ss:SSS").format(new Date(T1Prime))  + ", T'2 = " + new SimpleDateFormat("HH:mm:ss:SSS").format(new Date(T2Prime)) );
+            System.out.println("T2 = " + T2);
+            System.out.println("Délai de transmission  = " + delta + " ms");
+            System.out.println("Décalage des horloges  = " + theta + " ms");
 
             // Ajuster l'horloge du client si besoin
-            System.out.println("Nouvelle horloge client = " + (T2 + theta) + " ms");
+            System.out.println("Nouvelle horloge client = " + ( new SimpleDateFormat("HH:mm:ss:SSS").format(new Date(T1Received)) + ", T'1 = " + new SimpleDateFormat("HH:mm:ss:SSS").format(new Date(T1Prime))  + ", T'2 = " + new SimpleDateFormat("HH:mm:ss:SSS").format(new Date(T2 + theta))) + " ms");
 
         } catch (Exception e) {
             e.printStackTrace();
