@@ -44,7 +44,6 @@ public class Client {
                     case "DEFEAT":
                         System.out.println("Vous avez perdu.");
                         return;
-                        
                     default:
                         // Si le message commence par "OPPONENT MOVE"
                         if (serverResponse.startsWith("OPPONENT MOVE")) {
@@ -58,7 +57,7 @@ public class Client {
                         }
                         // Si jamais il y a d'autres messages
                         else {
-                            System.out.println("Message inconnu du serveur : " + serverResponse);
+                            System.out.println(serverResponse);
                         }
                         break;
                 }

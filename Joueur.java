@@ -68,11 +68,15 @@ public class Joueur extends Thread {
                         int col = Integer.parseInt(input.split(" ")[1]);
                         
                         if (jeu.jouerCoup(col)) {
+                            printPlateau();
                             out.println("VALID MOVE " + col);
                             System.out.println("Coup valide joué par le Joueur " + symbole 
                                                + " en colonne " + col);
                             
                             adversaire.sendMessage("OPPONENT MOVE " + col);
+                            adversaire.printPlateau();
+
+
 
                             // Vérifier si ce coup mène à la victoire
                             if (jeu.verifierVictoire()) {
@@ -105,5 +109,21 @@ public class Joueur extends Thread {
     
     public void sendMessage(String message) {
         out.println(message);
+    }
+    public void printPlateau() {
+    char[][] plateau = jeu.getPlateau();
+    int cols = plateau[0].length;
+    int rows = plateau.length;
+
+    for (int j = 0; j < cols; j++) {
+        out.print(" "+ j + " ");
+    }
+    out.println();
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            out.print("[" + plateau[i][j] + "]");
+        }
+        out.println();
+        }
     }
 }

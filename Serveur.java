@@ -12,7 +12,7 @@ public class Serveur {
             Socket joueur1Socket = serverSocket.accept();
             // Le premier joueur aura pour symbole '1'
             Joueur joueur1 = new Joueur(joueur1Socket, jeu, '1', null);
-            
+            joueur1.sendMessage("En attente d'autres joueurs...");
             // Connexion du second joueur
             Socket joueur2Socket = serverSocket.accept();
             // Le second joueur aura pour symbole '2'
