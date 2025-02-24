@@ -1,3 +1,4 @@
+package horlogeParlante_Q1;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -17,7 +18,7 @@ public class Client {
             InetAddress serverInetAddress = InetAddress.getByName(serverAddress);
             DatagramPacket request = new DatagramPacket(requestData, requestData.length, serverInetAddress, serverPort);
             socket.send(request);
-            System.out.println("Requête envoyée au serveur : " + requete);
+            System.out.println("Requête envoyée au serveur");
 
             // Réception de la réponse du serveur
             byte[] buffer = new byte[1024];
