@@ -1,4 +1,5 @@
-package horlogeParlante_Q2;
+package horlogeParlante_Q1;
+
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
