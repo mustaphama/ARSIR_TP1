@@ -1,5 +1,0 @@
-{
-  "java.project.sourcePaths": ["src/horlogeParlante_Q1", "src"],
-  "java.project.outputPath": "bin",
-  "java.project.referencedLibraries": ["lib/**/*.jar"]
-}
