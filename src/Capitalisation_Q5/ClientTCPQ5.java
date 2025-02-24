@@ -1,4 +1,4 @@
-package horlogeParlante_Q4;
+package Capitalisation_Q5;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class ClientTCPQ4 {
+public class ClientTCPQ5 {
     public static void main(String[] args) {
         String serverAddress = "localhost"; // Adresse du serveur
         int serverPort = 12345; // Port du serveur
@@ -17,8 +17,7 @@ public class ClientTCPQ4 {
              Scanner scanner = new Scanner(System.in)) {
 
             System.out.println("Connecté au serveur " + serverAddress + " sur le port " + serverPort);
-            System.out.println("Envoyez 'DATE', 'HOUR', 'FULL' pour obtenir les informations correspondantes.");
-            System.out.println("Envoyez 'CLOSE' pour fermer la connexion.");
+            System.out.println("Envoyez une commande pour obtenir la réponse en majuscules.");
 
             while (true) {
                 System.out.print("Entrez une commande : ");
@@ -35,12 +34,8 @@ public class ClientTCPQ4 {
                 }
 
                 System.out.println("Réponse du serveur : " + serverResponse);
-
-                // Si l'utilisateur a envoyé "CLOSE", on quitte la boucle
-                if (userCommand.equalsIgnoreCase("CLOSE")) {
-                    break;
-                }
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
