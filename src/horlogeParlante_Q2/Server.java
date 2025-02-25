@@ -16,30 +16,23 @@ public class Server {
                 // Réception du message du client
                 DatagramPacket request = new DatagramPacket(buffer, buffer.length);
                 socket.receive(request);
-
-                // Heure de réception T'₁
+                
+                // Heure de réception T'₁ en `long`
                 long T1Prime = System.currentTimeMillis();
 
                 // Récupération de l'adresse et du port du client
                 InetAddress clientAddress = request.getAddress();
                 int clientPort = request.getPort();
 
-                // Extraction de T₁ envoyé par le client
-                String receivedData = new String(request.getData(), 0, request.getLength());
-                long T1 = Long.parseLong(receivedData);
-
-                // Heure d'envoi T'₂
-                long T2Prime = System.currentTimeMillis();
-
-                // Construire la réponse contenant T₁, T'₁ et T'₂
-                String responseData = T1 + "," + T1Prime + "," + T2Prime;
+                // Préparer la réponse avec un timestamp `long`
+                String responseData = String.valueOf(T1Prime);
                 byte[] responseBytes = responseData.getBytes();
 
                 // Envoi de la réponse au client
                 DatagramPacket response = new DatagramPacket(responseBytes, responseBytes.length, clientAddress, clientPort);
                 socket.send(response);
 
-                System.out.println("Réponse envoyée au client : " + responseData);
+                System.out.println("Réponse envoyée au client : " + T1Prime);
             }
         } catch (Exception e) {
             e.printStackTrace();
