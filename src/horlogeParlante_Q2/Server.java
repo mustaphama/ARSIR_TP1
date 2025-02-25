@@ -1,6 +1,9 @@
+package horlogeParlante_Q2;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Server {
     public static void main(String[] args) {
@@ -17,21 +20,13 @@ public class Server {
                 socket.receive(request);
                 
                 // Heure de réception T'₁
-                long T1Prime = System.currentTimeMillis();
+                long T1 = System.currentTimeMillis();
 
                 // Récupération de l'adresse et du port du client
                 InetAddress clientAddress = request.getAddress();
                 int clientPort = request.getPort();
 
-                // Extraction de T₁ envoyé par le client
-                String receivedData = new String(request.getData(), 0, request.getLength());
-                long T1 = Long.parseLong(receivedData);
-
-                // Heure d'envoi T'₂
-                long T2Prime = System.currentTimeMillis();
-
-                // Construire la réponse contenant T₁, T'₁ et T'₂
-                String responseData = T1 + "," + T1Prime + "," + T2Prime;
+                String responseData = ( new SimpleDateFormat("HH:mm:ss:SSS").format(new Date(T1)));
                 byte[] responseBytes = responseData.getBytes();
 
                 // Envoi de la réponse au client
